@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiscalização Pública - Portaria 113/2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+        
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .alert-box {
+            background: #7f1d1d;
+            border-left: 5px solid #fca5a5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .info-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h2 {
+            color: #f87171;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+        
+        .highlight {
+            background: #451a03;
+            color: #fdba74;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #713f12;
+            color: #fde047;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #0f172a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        
+        th {
+            background: #334155;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+        
+        tr:hover {
+            background: #1e293b;
+        }
+        
+        .criticism-box {
+            background: #450a0a;
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .criticism-box h3 {
+            color: #fca5a5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .criticism-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .criticism-box li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #7f1d1d;
+        }
+        
+        .criticism-box li:before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 2px;
+        }
+        
+        .badge-danger {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #f59e0b;
+            color: #000;
+        }
+        
+        .badge-info {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc2626, #f87171);
+            width: 85%;
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 2px solid #334155;
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .tooltip {
+            position: relative;
+            cursor: help;
+            text-decoration: underline dotted #f87171;
+        }
+        
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+        
+        .number-big {
+            font-size: 3em;
+            font-weight: bold;
+            color: #dc2626;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .quote {
+            border-left: 4px solid #dc2626;
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #cbd5e1;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 FISCALIZAÇÃO PÚBLICA</h1>
+            <p class="subtitle">Análise Crítica da Portaria Nº 113/2026</p>
+            <p style="margin-top:10px; font-size:0.9em;">Prefeitura Municipal de Conceição do Araguaia - PA</p>
+        </header>
+
+        <div class="alert-box">
+            ⚠️ ESTE DOCUMENTO É UMA ANÁLISE CRÍTICA E INFORMATIVA DE INICIATIVA CIDADÃ. NÃO SUBSTITUI AÇÕES OFICIAIS DE CONTROLE.
+        </div>
+
+        <div class="info-card">
+            <h2>📋 Dados do Ato Administrativo</h2>
+            <table>
+                <tr>
+                    <th>Campo</th>
+                    <th>Informação</th>
+                </tr>
+                <tr>
+                    <td>Número</td>
+                    <td><span class="highlight">Portaria Nº 113/2026</span></td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>05 de maio de 2026</td>
+                </tr>
+                <tr>
+                    <td>Publicação</td>
+                    <td>06 de maio de 2026 (Edição 3997)</td>
+                </tr>
+                <tr>
+                    <td>Órgão</td>
+                    <td>Secretaria Municipal de Educação e Cultura</td>
+                </tr>
+                <tr>
+                    <td>Signatário</td>
+                    <td>Fhabio Adolfo Nunes (Secretário)</td>
+                </tr>
+                <tr>
+                    <td>Base Legal</td>
+                    <td>Art. 117 da Lei nº 14.133/2021 (Lei de Licitações)</td>
+                </tr>
+                <tr>
+                    <td>Código Identificador</td>
+                    <td><span class="badge badge-info">1A9BE7C4</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="info-card">
+            <h2>🎯 Objeto da Contratação</h2>
+            <p><strong>Processo:</strong> <span class="highlight warning">1856/2026</span></p>
+            <p style="margin-top:10px;">
+                Registro de Preços para futura e eventual contratação de empresa especializada para 
+                <strong>fornecimento de serviços de alimentação</strong> (refeições prontas tipo marmitex) 
+                visando atender às necessidades das secretarias municipais.
+            </p>
+            <div style="margin-top:15px;">
+                <span class="badge badge-danger">REGISTRO DE PREÇOS</span>
+                <span class="badge badge-warning">ALIMENTAÇÃO</span>
+                <span class="badge badge-info">MARMITEX</span>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2>👥 Equipe de Fiscalização Designada</h2>
+            <table>
+                <tr>
+                    <th>Função</th>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-info">GESTOR</span></td>
+                    <td>Paulo Regino Guerra</td>
+                    <td>1231504</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-danger">FISCAL TITULAR</span></td>
+                    <td>Roberto Raniery Neves Marinho</td>
+                    <td>1231509</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-warning">FISCAL SUPLENTE</span></td>
+                    <td>Lauanda Sousa Silva</td>
+                    <td>1231324</td>
+                </tr>
+            </table>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p style="text-align:center; font-size:0.9em; color:#94a3b8;">Designação completa da equipe de fiscalização</p>
+        </div>
+
+        <div class="criticism-box">
+            <h3>⚠️ PONTOS DE ATENÇÃO E CRÍTICAS</h3>
+            <ul>
+                <li>
+                    <strong>Falta de Transparência no Valor:</strong> A portaria não divulga o valor estimado do registro de preços, 
+                    impossibilitando o cidadão de avaliar a proporção do gasto público. A Lei 14.133/2021 exige publicidade nos atos de gestão.
+                </li>
+                <li>
+                    <strong>Justificativa Ausente:</strong> Não há fundamentação sobre a necessidade específica de contratação de marmitex 
+                    versus outras modalidades (cozinha própria, restaurante popular, etc.). Qual a razão de custo-benefício?
+                </li>
+                <li>
+                    <strong>Concentração de Poder:</strong> O mesmo secretário (Fhabio Adolfo Nunes) assina a portaria e comanda a pasta. 
+                    O gestor designado (Paulo Regino Guerra) atua sob sua subordinação direta, o que pode comprometer a independência da fiscalização.
+                </li>
+                <li>
+                    <strong>Vinculação de Matrículas:</strong> As matrículas sequenciais (1231504, 1231509, 1231324) sugerem servidores 
+                    de mesmo período de ingresso. Haveria conflito de interesses ou vínculos prévios entre os designados?
+                </li>
+                <li>
+                    <strong>Amplitude do Objeto:</strong> "Atender às necessidades das secretarias" é vago demais. 
+                    Quantas secretarias? Quantas refeições/dia? Qual o período de vigência? A imprecisão dificulta o controle social.
+                </li>
+                <li>
+                    <strong>Lei 14.133/2021:</strong> Embora cite a lei, a portaria não demonstra como o registro de preços se adequa 
+                    aos princípios da vinculação ao orçamento (art. 7º) e da eficiência (art. 6º).
+                </li>
+                <li>
+                    <strong>Suplente sem Experiência Declarada:</strong> Não consta na portaria a qualificação técnica do fiscal suplente 
+                    (Lauanda Sousa Silva) para atuar em contratos de alimentação, que exige conhecimentos específicos de segurança alimentar.
+                </li>
+                <li>
+                    <strong>Publicação tardia:</strong> A portaria é de 05/05/2026 mas publicada em 06/05/2026. 
+                    Houve cumprimento do prazo de publicidade imediata exigido para atos de gestão?
+                </li>
+            </ul>
+        </div>
+
+        <div class="grid-2">
+            <div class="info-card">
+                <h2>📊 Índice de Transparência</h2>
+                <div class="number-big">3/10</div>
+                <p style="text-align:center; color:#94a3b8;">
+                    Documento omite informações essenciais como valor, quantitativo, vigência e motivação da escolha por registro de preços.
+                </p>
+            </div>
+            <div class="info-card">
+                <h2>🎯 Risco de Irregularidade</h2>
+                <div class="number-big">6/10</div>
+                <p style="text-align:center; color:#94a3b8;">
+                    Elevado devido à falta de detalhamento do objeto, ausência de justificativa técnica e possível concentração de controle na mesma secretaria.
+                </p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2>📜 Atribuições Designadas (Resumo Crítico)</h2>
+            <div class="quote">
+                "Art. 2º e 3º listam 10 atribuições para Gestor e Fiscal, respectivamente. 
+                No entanto, a mera enumeração legal não garante efetividade sem capacitação, estrutura e independência."
+            </div>
+            <p style="margin-top:15px;">
+                <strong>Problema central:</strong> O fiscal (Roberto Raniery) deve "manifestar-se por escrito, mensalmente" sobre a exequibilidade, 
+                mas a portaria não estabelece <em>para quem</em> esse relatório deve ser encaminhado além do gestor, 
+                nem prevê encaminhamento ao Tribunal de Contas ou à Câmara Municipal.
+            </p>
+        </div>
+
+        <div class="criticism-box" style="background: #1e3a8a; border-color: #3b82f6;">
+            <h3 style="color: #93c5fd;">💡 RECOMENDAÇÕES AO CONTROLE SOCIAL</h3>
+            <ul>
+                <li style="border-color: #1e40af;">
+                    Solicitar via LAI (Lei de Acesso à Informação) o valor estimado e o edital do processo 1856/2026.
+                </li>
+                <li style="border-color: #1e40af;">
+                    Acompanhar mensalmente os relatórios de fiscalização previstos no Art. 3º, IX.
+                </li>
+                <li style="border-color: #1e40af;">
+                    Verificar se as refeições atendem à Resolução RDC nº 275/2002 (ANVISA) sobre segurança alimentar.
+                </li>
+                <li style="border-color: #1e40af;">
+                    Cruzar matrículas dos servidores com possíveis vínculos familiares ou empresariais com fornecedores.
+                </li>
+                <li style="border-color: #1e40af;">
+                    Exigir publicação do cronograma físico-financeiro e notas fiscais no portal da transparência municipal.
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h2>🔗 Fonte e Verificação</h2>
+            <p>
+                <strong>Documento original:</strong> 
+                <a href="https://www.diariomunicipal.com.br/famep/materia/1A9BE7C4/0cefb3463f9ec7a80296d546798c7cd80cefb3463f9ec7a80296d546798c7cd8" 
+                   style="color:#60a5fa; text-decoration:none;" target="_blank">
+                   Diário Oficial dos Municípios do Estado do Pará
+                </a>
+            </p>
+            <p style="margin-top:10px; font-size:0.9em; color:#64748b;">
+                Código Identificador: 1A9BE7C4 | Edição 3997 | 06/05/2026
+            </p>
+            <p style="margin-top:10px; font-size:0.85em; color:#475569;">
+                Publicado por: Mislene Pereira Maciel Saraiva
+            </p>
+        </div>
+
+        <footer>
+            <p>🛡️ Fiscalização cidadã é um direito garantido pelo Art. 37 da Constituição Federal</p>
+            <p style="margin-top:10px; font-size:0.8em;">
+                Este site é uma análise independente e não possui vínculo com órgãos públicos.<br>
+                Gerado em 06 de maio de 2026 para fins educativos e de transparência.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
