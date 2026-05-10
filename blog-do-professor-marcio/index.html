@@ -33,6 +33,7 @@
             padding-bottom: 80px; 
         }
 
+        /* BARRA SUPERIOR */
         .app-header {
             background: var(--primary);
             color: var(--white);
@@ -47,31 +48,30 @@
             text-align: center;
         }
 
-        .app-header h1 {
-            font-size: 1rem;
-            font-family: 'Merriweather', serif;
-        }
+        .app-header h1 { font-size: 1rem; font-family: 'Merriweather', serif; }
 
+        /* PERFIL DO PROFESSOR (AMPLIADO) */
         .profile-card {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 20px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 15px;
         }
 
         .profile-img-mini {
-            width: 70px;
-            height: 90px;
+            width: 95px; /* Tamanho maior solicitado */
+            height: 125px; /* Proporção 3x4 */
             border-radius: 8px;
-            border: 2px solid var(--secondary);
+            border: 3px solid var(--secondary);
             object-fit: cover;
             background: white;
+            flex-shrink: 0;
         }
 
-        .profile-info h2 { font-size: 1.1rem; margin-bottom: 2px; }
-        .profile-info p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 8px; }
+        .profile-info h2 { font-size: 1.2rem; margin-bottom: 4px; }
+        .profile-info p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 10px; }
 
         .header-badge {
             display: inline-flex;
@@ -79,9 +79,9 @@
             gap: 6px;
             background: var(--accent);
             color: white;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
             box-shadow: 0 2px 8px rgba(139,0,0,0.4);
             text-transform: uppercase;
@@ -93,11 +93,11 @@
             margin: 0 auto;
         }
 
-        /* ANIMAÇÃO PISCANTE */
+        /* CONTADOR PISCANTE */
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
+            0% { opacity: 1; border-color: var(--secondary); }
+            50% { opacity: 0.5; border-color: transparent; }
+            100% { opacity: 1; border-color: var(--secondary); }
         }
 
         .counter-widget {
@@ -106,11 +106,12 @@
             padding: 12px;
             border-radius: 12px;
             text-align: center;
-            margin-bottom: 15px;
-            border: 1px solid var(--secondary);
-            animation: blink 1.5s infinite ease-in-out; /* Aplica o efeito de piscar */
+            margin-bottom: 20px;
+            border: 2px solid var(--secondary);
+            animation: blink 2s infinite ease-in-out;
         }
 
+        /* MATÉRIA E GALERIA VERTICAL 400x700 */
         .featured-card {
             background: var(--white);
             border-radius: 15px;
@@ -122,77 +123,83 @@
         .image-stack {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            align-items: center;
+            gap: 25px;
+            padding: 20px;
             background: #eee;
         }
 
+        .image-stack figure { width: 100%; max-width: 320px; margin: 0; }
+
         .image-stack img {
             width: 100%;
-            height: auto;
-            display: block;
+            aspect-ratio: 4 / 7; /* Proporção solicitada */
+            object-fit: cover;
+            border-radius: 10px;
+            border: 4px solid var(--secondary);
+            outline: 3px solid var(--accent);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+
+        .image-stack figcaption {
+            font-size: 0.75rem;
+            color: var(--dark);
+            text-align: center;
+            margin-top: 8px;
+            font-weight: 700;
+            background: rgba(201, 162, 39, 0.1);
+            padding: 5px;
+            border-radius: 5px;
         }
 
         .card-content { padding: 20px; }
         .card-content h3 { 
-            font-size: 1.3rem; 
-            margin-bottom: 12px; 
+            font-size: 1.4rem; 
+            margin-bottom: 15px; 
             font-family: 'Merriweather', serif; 
             line-height: 1.3;
             color: var(--dark);
         }
         
         .article-text {
-            font-size: 0.95rem;
-            color: #444;
+            font-size: 1rem;
+            color: #333;
             text-align: justify;
             margin-bottom: 15px;
         }
 
-        .meta { font-size: 0.7rem; color: #888; margin-bottom: 10px; display: flex; gap: 10px; }
+        .meta { font-size: 0.75rem; color: #777; margin-bottom: 12px; display: flex; gap: 12px; }
 
-        .section-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 20px 0 15px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* OUTRAS MATÉRIAS */
+        .other-news {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 6px solid var(--secondary);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
         }
 
+        /* RODAPÉ */
         .footer {
             background: var(--dark);
             color: white;
-            padding: 30px 20px;
-            margin-top: 20px;
+            padding: 40px 20px;
             text-align: center;
         }
 
-        .footer-brand h3 {
-            font-family: 'Merriweather', serif;
-            font-size: 1.1rem;
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-
-        .footer-brand p {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-bottom: 15px;
-        }
-
+        /* NAVEGAÇÃO INFERIOR ESTILO APP */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: var(--white);
-            height: 65px;
+            height: 70px;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.15);
             z-index: 1000;
         }
 
@@ -202,25 +209,30 @@
             align-items: center;
             color: #888;
             text-decoration: none;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 600;
         }
 
         .nav-item.active { color: var(--primary); }
-        .nav-item i { font-size: 1.2rem; margin-bottom: 3px; }
+        .nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
 
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <h1>Blog do Professor Márcio</h1>
+        
+        <div class="header-badge">
+          
+          <h1>Blog do Professor Márcio <p><i class="fab fa-whatsapp"></i> (94) 99250-0073</p></h1>
+      </div>
     </header>
 
     <section class="profile-card">
-        <img src="img/01.jpg" alt="Márcio" class="profile-img-mini" onerror="this.src='https://via.placeholder.com/70x90'">
+        <img src="img/01.jpg" alt="Professor Márcio" class="profile-img-mini" onerror="this.src='https://via.placeholder.com/95x125'">
         <div class="profile-info">
             <h2>Professor Márcio</h2>
-            <p><i class="fab fa-whatsapp"></i> (94) 99250-0073</p>
+            
             <div class="header-badge">
                 <i class="fas fa-landmark"></i>
                 Política em Conceição do Araguaia - PA 
@@ -231,57 +243,66 @@
     <div class="app-container">
         
         <div class="counter-widget">
-            <div style="font-size: 1.4rem; font-weight: 900;" id="visit-counter">2.000</div>
-            <div style="font-size: 0.65rem; color: white; text-transform: uppercase;">Visualizações do Blog</div>
+            <div style="font-size: 1.6rem; font-weight: 900;" id="visit-counter">2.000</div>
+            <div style="font-size: 0.7rem; color: white; text-transform: uppercase; letter-spacing: 1px;">Visualizações do Blog</div>
         </div>
 
         <h2 class="section-title"><i class="fas fa-star"></i> Matéria em Destaque</h2>
         
         <article class="featured-card">
             <div class="image-stack">
-                <img src="img/pecuaria01.jpeg" alt="Márcio e Professor Vitor">
-                <img src="img/pecuaria02.jpeg" alt="Lideranças locais">
-                <img src="img/pecuaria03.jpeg" alt="Encontro na Pecuária">
+                <figure>
+                    <img src="img/pecuaria01.jpeg" alt="Foto 1">
+                    <figcaption>Márcio "O Fiscal do Povo" e Professor Vitão</figcaption>
+                </figure>
                 
+                <figure>
+                    <img src="img/pecuaria02.jpeg" alt="Foto 2">
+                    <figcaption>Aline Valentina (Presidente do Missão), Ruthelly (Vereadora Presidente da Câmara) e Márcio "O Fiscal do Povo"</figcaption>
+                </figure>
+                
+                <figure>
+                    <img src="img/pecuaria03.jpeg" alt="Foto 3">
+                    <figcaption>Márcio "O Fiscal do Povo", Professor Vitão, Aline Valentina (Presidente do Missão)</figcaption>
+                </figure>
             </div>
+
             <div class="card-content">
                 <div class="meta">
                     <span><i class="far fa-calendar"></i> 08 de Maio de 2028</span>
-                    <span style="color:var(--accent); font-weight:700">POLÍTICA</span>
+                    <span style="color:var(--accent); font-weight:800">URGENTE</span>
                 </div>
-                <h3>Márcio "O Fiscal do Povo" e Professor Vitor: O Encontro que Sacudiu a Pecuária e Mira 2028</h3>
-                <div class="article-text">
-                    <p>O clima na tradicional Feira Agropecuária desta noite não era apenas de festa, mas de intensa movimentação política. O destaque absoluto ficou para o encontro entre duas figuras de peso na cena local: Márcio "O Fiscal do Povo" e o Professor Vitor. O aperto de mão e as conversas ao pé do ouvido entre os dois líderes não deixaram dúvidas para os presentes: uma grande coligação para as eleições de 2028 está sendo desenhada.</p>
-                    
-                    <p>Márcio, amplamente conhecido por sua atuação rigorosa na fiscalização dos recursos públicos e defesa dos interesses do cidadão, parece ter encontrado no Professor Vitor o equilíbrio ideal para uma chapa majoritária. Enquanto Márcio traz o vigor da engenharia e da transparência administrativa, o Professor Vitor agrega o valor da educação e do diálogo social.</p>
-                    
-                    <p>A escolha da Pecuária como palco para essa aparição pública conjunta é estratégica. No coração do evento mais popular da cidade, a dupla sentiu de perto o termômetro das ruas. Se 2028 ainda parece longe para alguns, para os articuladores políticos de Conceição do Araguaia, a corrida começou hoje.</p>
-                </div>
-                <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none; font-size: 0.9rem;">Fique ligado no Blog do Professor Márcio para mais atualizações sobre os bastidores desta aliança que promete sacudir as estruturas do Pará.</a>
-            </div>
-            <h2 class="section-title"><i class="fas fa-newspaper"></i> Outras Notícias</h2>
-            <article class="featured-card" style="padding: 15px; margin-bottom: 10px; border-left: 5px solid var(--secondary);">
-                <div class="meta"><span>Veja mais análises</span></div>
+                <h3>Márcio "O Fiscal do Povo" e Professor Vitão: O Encontro na Pecuária que Mira 2028</h3>
                 
-                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">
-                    Fique por dentro de tudo o que acontece nos bastidores da política local, denúncias exclusivas e o acompanhamento detalhado da nossa cidade.
-                </p>
-            
-                <a href="materias.html" target="_blank" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 8px;">
-                    <h4 style="font-family: 'Merriweather', serif; font-size: 1.1rem; font-weight: 900;">
-                        Clique aqui para acessar o arquivo completo de matérias <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i>
-                    </h4>
-                </a>
-            </article>
+                <div class="article-text">
+                    <p>O clima na tradicional Feira Agropecuária desta noite transbordou política. Márcio "O Fiscal do Povo" e o Professor Vitão foram vistos em intensa sintonia, alimentando as discussões sobre uma possível coligação para as eleições de 2028.</p>
+                    <p>O encontro contou ainda com a presença de Aline Valentina, presidente do Missão, e da vereadora-presidente Ruthelly, consolidando um bloco de oposição e fiscalização que promete sacudir as estruturas de Conceição do Araguaia.</p>
+                    <p>Enquanto Márcio traz o peso da fiscalização rigorosa e sua experiência técnica, Vitão agrega o diálogo social e a base da educação. A corrida para 2028 começou hoje no coração da Pecuária.</p>
+                </div>
+            </div>
+        </article>
+
+        <h2 class="section-title"><i class="fas fa-newspaper"></i> Outras Notícias</h2>
+        <div class="other-news">
+            <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px;">
+                Fique por dentro de tudo o que acontece nos bastidores da política local e denúncias exclusivas.
+            </p>
+            <a href="materias.html" target="_blank" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 10px;">
+                <h4 style="font-family: 'Merriweather', serif; font-size: 1.1rem; font-weight: 900;">
+                    CLIQUE PARA VER MAIS MATÉRIAS <i class="fas fa-external-link-alt"></i>
+                </h4>
+            </a>
+        </div>
+
     </div>
 
     <footer class="footer">
         <div class="footer-brand">
-            <h3>Blog do Professor Márcio</h3>
-            <p>Fiscalização e cidadania ativa em Conceição do Araguaia - Pará.</p>
+            <h3 style="color: var(--secondary); margin-bottom: 10px;">Blog do Professor Márcio</h3>
+            <p style="font-size: 0.85rem; opacity: 0.8;">Fiscalização e cidadania ativa em Conceição do Araguaia - Pará.</p>
         </div>
-        <div class="footer-bottom" style="font-size: 0.7rem; opacity: 0.5;">
-            <p>© 2026-2028 Blog do Professor Márcio - Todos os direitos reservados</p>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 20px; font-size: 0.75rem; opacity: 0.6;">
+            <p>© 2026-2028 Blog do Professor Márcio </br> Todos os direitos reservados</p>
         </div>
     </footer>
 
