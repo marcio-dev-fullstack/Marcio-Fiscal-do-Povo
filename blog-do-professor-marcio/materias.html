@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Matérias - Blog do Professor Márcio</title>
+    <title>Arquivo de Matérias - Blog do Professor Márcio</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,10 +12,10 @@
             --secondary: #c9a227;
             --accent: #c00; 
             --dark: #0f1f2e;
-            --light: #f6f6f6;
+            --light: #f4f4f4;
             --white: #ffffff;
             --text: #333333;
-            --border: #ebebeb;
+            --border: #e0e0e0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,237 +24,285 @@
             font-family: 'Open Sans', sans-serif;
             background: var(--light);
             color: var(--text);
-            padding-bottom: 80px;
+            padding-bottom: 40px;
         }
 
         .app-header {
             background: var(--primary);
             color: white;
-            padding: 15px;
+            padding: 18px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .app-header h1 { font-family: 'Merriweather', serif; font-size: 1.1rem; }
+        .app-header h1 { font-family: 'Merriweather', serif; font-size: 1.1rem; text-transform: uppercase; }
 
-        .app-container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        .app-container { padding: 15px; max-width: 700px; margin: 0 auto; }
 
-        .category-group { margin-bottom: 30px; }
-
-        .category-title {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            display: flex;
+        .btn-back {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
 
-        .news-card {
+        .news-list {
             background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .news-item {
+            padding: 20px;
             display: block;
             text-decoration: none;
             color: inherit;
-            transition: background 0.2s;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
         }
 
-        .news-card:hover { background: #fafafa; }
+        .news-item:last-child { border-bottom: none; }
+        .news-item:active { background: #f9f9f9; }
+
+        .date-tag {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
 
         .news-title {
             font-family: 'Merriweather', serif;
             font-size: 1.05rem;
             line-height: 1.4;
-            color: var(--primary);
-            margin-bottom: 5px;
+            color: var(--dark);
             font-weight: 700;
         }
 
-        .news-title:hover { color: var(--accent); }
+        .read-more {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-        .news-meta {
+        .read-more i { margin-left: 5px; font-size: 0.7rem; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
             font-size: 0.75rem;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 20px;
+            color: #888;
         }
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <h1>ARQUIVO DE MATÉRIAS</h1>
+        <h1>Matérias Políticas de Conceição do Araguaia</h1>
     </header>
 
     <div class="app-container">
         
         <a href="index.html" class="btn-back">
-            <i class="fas fa-arrow-left"></i> Início
+            <i class="fas fa-chevron-left"></i> VOLTAR AO INÍCIO
         </a>
 
-        <div class="category-group">
-            <h2 class="category-title"><i class="fas fa-gavel"></i> Justiça e Fiscalização</h2>
-            
-            <a href="materias/jair-martins-reu.html" target="_blank" class="news-card">
+        <div class="news-list">
+
+            <a href="materias/secretaria-de-fazenda-Portaria-006-2026.html" target="_blank" class="news-item">
+                <span class="date-tag">11 MAIO 2026</span>
+                <h3 class="news-title">Secretaria de Fazenda: Portaria 006-2026</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/emenda-camara.html" target="_blank" class="news-item">
+                <span class="date-tag">10 MAIO 2026</span>
+                <h3 class="news-title">A VERDADE: Emenda de R$ 1,2 milhão para a Câmara Municipal</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/jair-martins-reu.html" target="_blank" class="news-item">
+                <span class="date-tag">09 MAIO 2026</span>
                 <h3 class="news-title">Justiça: Jair Martins torna-se réu em processo judicial</h3>
-                <div class="news-meta"><span>2026</span> • <span>EXCLUSIVO</span></div>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/mppa-01.html" target="_blank" class="news-card">
-                <h3 class="news-title">MPPA: Ministério Público instaura novos procedimentos de investigação</h3>
-                <div class="news-meta"><span>Relatório Oficial</span></div>
+            <a href="materias/sharles-13-04-2026.html" target="_blank" class="news-item">
+                <span class="date-tag">13 ABRIL 2026</span>
+                <h3 class="news-title">Relatório Sharles: Transparência e Movimentações</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/tre-pa.html" target="_blank" class="news-card">
-                <h3 class="news-title">TRE-PA: Movimentações e decisões da justiça eleitoral na região</h3>
-                <div class="news-meta"><span>Eleições</span></div>
+            <a href="materias/rua-04-2026.html" target="_blank" class="news-item">
+                <span class="date-tag">04 ABRIL 2026</span>
+                <h3 class="news-title">Infraestrutura: Relatório das condições da malha urbana</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/cpi.html" target="_blank" class="news-card">
-                <h3 class="news-title">CPI: Comissão Parlamentar de Inquérito avança em Conceição do Araguaia</h3>
-                <div class="news-meta"><span>Câmara Municipal</span></div>
+            <a href="materias/pf-03-2026.html" target="_blank" class="news-item">
+                <span class="date-tag">MARÇO 2026</span>
+                <h3 class="news-title">Operação Polícia Federal: Fiscalização e Desdobramentos</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/pf-03-2026.html" target="_blank" class="news-card">
-                <h3 class="news-title">Polícia Federal: Operação e desdobramentos de março de 2026</h3>
-                <div class="news-meta"><span>Segurança Pública</span></div>
+            <a href="materias/adm-reajuste-2026.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Administração: Reajuste Salarial 2026</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/diploma-falso.html" target="_blank" class="news-card">
-                <h3 class="news-title">Investigação: Caso de diploma falso repercute na gestão pública</h3>
-                <div class="news-meta"><span>Denúncia</span></div>
-            </a>
-        </div>
-
-        <div class="category-group">
-            <h2 class="category-title"><i class="fas fa-heartbeat"></i> Saúde Pública</h2>
-            
-            <a href="materias/festa-versus-saude.html" target="_blank" class="news-card">
-                <h3 class="news-title">Análise: Os investimentos em festas confrontados com a realidade da saúde</h3>
-                <div class="news-meta"><span>Opinião</span></div>
+            <a href="materias/cae-01.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Conselho de Alimentação Escolar: Mandato: 30/05/2025 a 30/05/2029</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/falta-de-medicamentos-01.html" target="_blank" class="news-card">
-                <h3 class="news-title">Crise: Moradores denunciam falta de medicamentos em postos de saúde</h3>
-                <div class="news-meta"><span>Serviço Público</span></div>
+            <a href="materias/caf-01.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Relatório CAF: Carbonato de Lítio 300mg & Quetiapina 200mg</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/plano-2025-da-saude.html" target="_blank" class="news-card">
-                <h3 class="news-title">Plano Municipal: As metas e desafios da saúde para 2025</h3>
-                <div class="news-meta"><span>Planejamento</span></div>
+           <a href="materias/caf-conceicao-do-araguaia-02.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">CAF: Central de Abastecimento Farmacêutico</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/hrca.html" target="_blank" class="news-card">
-                <h3 class="news-title">HRCA: Situação atual do Hospital Regional de Conceição do Araguaia</h3>
-                <div class="news-meta"><span>Saúde Regional</span></div>
+            <a href="materias/cda-129.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">129 anos em 14/04: Parabéns Conceição do Araguaia</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/regulacao-saude.html" target="_blank" class="news-card">
-                <h3 class="news-title">Regulação: Como funciona o sistema de filas e agendamentos no município</h3>
-                <div class="news-meta"><span>Informativo</span></div>
+            <a href="materias/contrato-01.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Contratos 025/2026 a 060/2026 - Secretaria Municipal de Gestão e Planejamento</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/sus.html" target="_blank" class="news-card">
-                <h3 class="news-title">SUS: A importância e as carências do sistema único em CDA</h3>
-                <div class="news-meta"><span>Direito do Cidadão</span></div>
-            </a>
-        </div>
-
-        <div class="category-group">
-            <h2 class="category-title"><i class="fas fa-landmark"></i> Gestão e Política</h2>
-            
-            <a href="materias/emenda-camara.html" target="_blank" class="news-card">
-                <h3 class="news-title">Deputado Joaquim Passarinho: Confirma a emenda em 2025 para a conclusão da câmara</h3>
-                <div class="news-meta"><span>Informativo</span></div>
+            <a href="materias/cpi.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">CPI: Comissão Parlamentar de Inquérito em CDA</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/adm-reajuste-2026.html" target="_blank" class="news-card">
-              <h3 class="news-title">Administração: Detalhes sobre o reajuste salarial de 2026</h3>
-              <div class="news-meta"><span>Servidor Público</span></div>
-          </a>
-
-            <a href="materias/reajuste-4.5.html" target="_blank" class="news-card">
-                <h3 class="news-title">Economia: Impacto do reajuste de 4.5% nas contas públicas</h3>
-                <div class="news-meta"><span>Finanças</span></div>
+            <a href="materias/diploma-falso.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Denúncia: Investigação sobre Diploma Falso na Gestão</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/vereadores.html" target="_blank" class="news-card">
-                <h3 class="news-title">Legislativo: O posicionamento dos vereadores sobre os projetos atuais</h3>
-                <div class="news-meta"><span>Câmara</span></div>
+            <a href="materias/engenharia.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Engenharia: Fiscalização Técnica de Obras</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/contrato-01.html" target="_blank" class="news-card">
-                <h3 class="news-title">Transparência: Análise do contrato administrativo nº 01</h3>
-                <div class="news-meta"><span>Fiscalização</span></div>
+            <a href="materias/falta-de-medicamentos-01.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Saúde: Denúncia de Falta de Medicamentos</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/pad-2022.html" target="_blank" class="news-card">
-                <h3 class="news-title">Processo Administrativo: Desdobramentos do PAD 2022</h3>
-                <div class="news-meta"><span>Arquivo</span></div>
-            </a>
-        </div>
-
-        <div class="category-group">
-            <h2 class="category-title"><i class="fas fa-graduation-cap"></i> Educação e Infraestrutura</h2>
-            
-            <a href="materias/cae-01.html" target="_blank" class="news-card">
-                <h3 class="news-title">Alimentação Escolar: Relatório CAE 01 sobre a merenda nas escolas</h3>
-                <div class="news-meta"><span>Educação</span></div>
+            <a href="materias/festa-versus-saude.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Análise: Investimentos em Festas x Saúde Pública</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/cae-02.html" target="_blank" class="news-card">
-                <h3 class="news-title">Fiscalização Escolar: Segunda fase do relatório CAE</h3>
-                <div class="news-meta"><span>Educação</span></div>
+            <a href="materias/hrca.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Situação do Hospital Regional (HRCA)</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/rua-04-2026.html" target="_blank" class="news-card">
-                <h3 class="news-title">Obras: Condições da malha urbana e projetos para abril de 2026</h3>
-                <div class="news-meta"><span>Infraestrutura</span></div>
+            <a href="materias/mppa-01.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">MPPA: Apuração de contratações temporárias irregulares e preterição de candidatos aprovados em concurso público municipal</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
 
-            <a href="materias/engenharia.html" target="_blank" class="news-card">
-                <h3 class="news-title">Engenharia: Visão técnica sobre as obras públicas em andamento</h3>
-                <div class="news-meta"><span>Técnico</span></div>
+            <a href="materias/pad-2022.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">PAD de 2022 reabeto em 2026: Márcio Rodrigues de Oliveira</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
             </a>
-        </div>
 
-        <div class="category-group">
-            <h2 class="category-title"><i class="fas fa-folder-open"></i> Documentos e Relatórios</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <a href="materias/caf-01.html" target="_blank" class="news-card" style="padding-left: 10px;">CAF - Falta de Remédios Carbonato de Lítio 300mg e Quetiapina 200mg</a>
-                <a href="materias/caf-conceicao-do-araguaia-02.html" target="_blank" class="news-card" style="padding-left: 10px;">CAF
-                CENTRAL DE ABASTECIMENTO FARMACÊUTICO</a>
-                <a href="materias/sharles-13-04-2026.html" target="_blank" class="news-card" style="padding-left: 10px;">Vereador Sharles -  Trasporte Escolar 3 meses de atraso no pagamento</a>
-                <a href="materias/wilkens.html" target="_blank" class="news-card" style="padding-left: 10px;">Morador Wilkens denuncia descaso na saúde</a>
-                <a href="materias/cda-129.html" target="_blank" class="news-card" style="padding-left: 10px;">Conceição do Araguaia 129 anos em 14 de abril</a>
-                <a href="materias/25m.html" target="_blank" class="news-card" style="padding-left: 10px;">Prefeita Elida pede mais 25 milhões aos vereadores</a>
-                <a href="materias/5m.html" target="_blank" class="news-card" style="padding-left: 10px;">DECRETO Nº 011/2026: A Prefeitura de Conceição do Araguaia acaba de remanejar uma fortuna</a>
-            </div>
+            <a href="materias/plano-2025-da-saude.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Plano Municipal de Saúde para 2025</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/reajuste-4.5.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Economia: Reajuste salarial dos servidores da ADM de apenas 4.5%</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/regulacao-saude.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Regulação da Saúde: Filas e Atendimentos</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/sus.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">A Importância e os Desafios do SUS em CDA</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/tre-pa.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Justiça Eleitoral: Jair Lopes Martins, Ação Penal Eleitoral (11528)
+                  Nº 0000042-17.2019.6.14.0024</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/vereadores.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Atuação dos Vereadores na Câmara Municipal</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/wilkens.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Wilkens na tribuna da câmara: Morador faz cobranças na saúde municipal</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/25m.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">Mais de R$ 25 milhões em remanejamento orçamentário sem explicação clara ao povo! Cadê a transparência?</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="materias/5m.html" target="_blank" class="news-item">
+                <span class="date-tag">ARQUIVO</span>
+                <h3 class="news-title">A Prefeitura de Conceição do Araguaia acaba de remanejar uma fortuna, R$ 25 milhões. O que estava planejado para um setor foi cancelado para cobrir outros gastos!</h3>
+                <span class="read-more">Clique e leia mais <i class="fas fa-arrow-right"></i></span>
+            </a>
+
         </div>
 
     </div>
 
-    <footer style="background: var(--dark); color: white; padding: 40px 20px; text-align: center; font-size: 0.8rem;">
-        <p>Blog do Professor Márcio <br> O Portal de Notícias Política</p>
+    <footer>
+        <p>© 2026 Blog do Professor Márcio - Fiscalização em CDA</p>
     </footer>
 
 </body>
