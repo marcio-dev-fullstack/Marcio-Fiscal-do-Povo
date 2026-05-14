@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiscalização de Combustíveis - PMCA | Transparência & Legalidade</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2874a6;
+            --accent: #f39c12;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f1c40f;
+            --bg: #f4f6f8;
+            --card: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e0e6ed;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        header p { opacity: 0.9; font-size: 0.95rem; }
+        .highlight-marcio {
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 10px rgba(247,147,30,0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 2px 10px rgba(247,147,30,0.3); }
+            50% { box-shadow: 0 2px 25px rgba(247,147,30,0.6); }
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+        .grid { display: grid; gap: 1.5rem; }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .card-header h3 { font-size: 1.1rem; color: var(--primary); }
+        .icon { font-size: 1.5rem; }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .kpi-label { color: var(--text-light); font-size: 0.9rem; }
+        .kpi-change {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .kpi-up { background: #d4edda; color: var(--success); }
+        .kpi-down { background: #f8d7da; color: var(--danger); }
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-success { background: #d4edda; color: var(--success); }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-danger { background: #f8d7da; color: var(--danger); }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: #f8f9fa; font-weight: 600; color: var(--primary); font-size: 0.85rem; text-transform: uppercase; }
+        tr:hover { background: #f8f9fa; }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        .legal-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        .legal-box h4 { color: var(--primary); margin-bottom: 0.5rem; }
+        .legal-box ul { margin-left: 1.2rem; }
+        .legal-box li { margin: 0.4rem 0; }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.85rem;
+            top: 1.2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--secondary);
+        }
+        .timeline-date { font-size: 0.8rem; color: var(--text-light); font-weight: 600; }
+        .timeline-title { font-weight: 600; color: var(--primary); margin: 0.3rem 0; }
+        .chart-container { position: relative; height: 300px; }
+        .chart-container-sm { position: relative; height: 250px; }
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            color: var(--text-light);
+            transition: all 0.2s;
+        }
+        .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .tab:hover { color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .fiscal-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+        .fiscal-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .fiscal-info h5 { color: var(--primary); }
+        .fiscal-info span { font-size: 0.85rem; color: var(--text-light); }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🛢️ Fiscalização de Aquisição de Combustíveis</h1>
+    <p>Prefeitura Municipal de Conceição do Araguaia/PA — Processo 3367/2026</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;">Adesão à Ata de Registro de Preços Nº 006/2025 | Pregão Eletrônico SRP Nº 010/2025 — FMS</p>
+</header>
+
+<div class="highlight-marcio">
+    ⭐ MARCIO RODRIGUES FERREIRA — FISCAL DO CONTRATO (SEGEPLAN) ⭐
+</div>
+
+<div class="container">
+
+    <!-- ALERTAS -->
+    <div class="alert alert-success">
+        <span style="font-size:1.3rem;">✅</span>
+        <div>
+            <strong>Status da Licitação:</strong> Ata de Registro de Preços válida e vigente. 
+            Fornecedora registrada: <strong>Mangueirão Comércio de Combustíveis e Transporte Ltda</strong> (CNPJ: 16.923.420/0001-80).
+            Base legal: Lei 14.133/2021 (arts. 104, III e 117).
+        </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="grid grid-4" style="margin: 1.5rem 0;">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🏛️</span>
+                <h3>Secretarias Atendidas</h3>
+            </div>
+            <div class="kpi-value">11</div>
+            <div class="kpi-label">Órgãos beneficiados pelo contrato</div>
+            <span class="kpi-change kpi-up">↑ 100% cobertura</span>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">👥</span>
+                <h3>Fiscais Designados</h3>
+            </div>
+            <div class="kpi-value">11</div>
+            <div class="kpi-label">Fiscais titulares + 11 suplentes</div>
+            <span class="kpi-change kpi-up">↑ Portaria 002/2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📋</span>
+                <h3>Processo Administrativo</h3>
+            </div>
+            <div class="kpi-value">3367/2026</div>
+            <div class="kpi-label">Adesão à ARP 006/2025</div>
+            <span class="kpi-change kpi-up">✓ Regular</span>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">⛽</span>
+                <h3>Tipo de Aquisição</h3>
+            </div>
+            <div class="kpi-value">SRP</div>
+            <div class="kpi-label">Sistema de Registro de Preços</div>
+            <span class="kpi-change kpi-up">Pregão Eletrônico</span>
+        </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('dashboard')">📊 Dashboard</div>
+        <div class="tab" onclick="showTab('fiscais')">👮 Fiscais & Gestores</div>
+        <div class="tab" onclick="showTab('legal')">⚖️ Base Legal</div>
+        <div class="tab" onclick="showTab('transparencia')">🔍 Transparência</div>
+        <div class="tab" onclick="showTab('acompanhamento')">📈 Acompanhamento</div>
+    </div>
+
+    <!-- TAB: DASHBOARD -->
+    <div id="dashboard" class="tab-content active">
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📊</span>
+                    <h3>Distribuição de Consumo por Secretaria (Estimativa)</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartSecretarias"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">⛽</span>
+                    <h3>Tipos de Combustível Adquiridos</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartCombustiveis"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">💰</span>
+                    <h3>Evolução Mensal de Gastos (R$)</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartGastos"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🎯</span>
+                    <h3>Indicadores de Fiscalização</h3>
+                </div>
+                <div style="padding:1rem 0;">
+                    <div style="margin-bottom:1.2rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+                            <span>Notas Fiscais Conferidas</span>
+                            <strong>98%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:98%;background:var(--success);"></div></div>
+                    </div>
+                    <div style="margin-bottom:1.2rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+                            <span>Preços Dentro da ARP</span>
+                            <strong>100%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div>
+                    </div>
+                    <div style="margin-bottom:1.2rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+                            <span>Entregas no Prazo</span>
+                            <strong>95%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:95%;background:var(--warning);"></div></div>
+                    </div>
+                    <div style="margin-bottom:1.2rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+                            <span>Relatórios de Fiscalização Enviados</span>
+                            <strong>100%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
+                            <span>Conformidade com Lei 14.133/2021</span>
+                            <strong>100%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-3" style="margin-top:1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🚗</span>
+                    <h3>Frota Monitorada</h3>
+                </div>
+                <div class="chart-container-sm">
+                    <canvas id="chartFrota"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📅</span>
+                    <h3>Status das Ordens de Fornecimento</h3>
+                </div>
+                <div class="chart-container-sm">
+                    <canvas id="chartStatus"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">⚡</span>
+                    <h3>Eficiência na Fiscalização</h3>
+                </div>
+                <div class="chart-container-sm">
+                    <canvas id="chartEficiencia"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: FISCAIS -->
+    <div id="fiscais" class="tab-content">
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🏛️</span>
+                    <h3>SEGEPLAN — Secretaria de Gestão e Planejamento</h3>
+                </div>
+                <div class="fiscal-card" style="border:2px solid var(--accent);">
+                    <div class="fiscal-avatar" style="background:linear-gradient(135deg,#ff6b35,#f7931e);">MR</div>
+                    <div class="fiscal-info">
+                        <h5>Márcio Rodrigues Ferreira</h5>
+                        <span>👤 Fiscal Titular | Matrícula: 0004302</span><br>
+                        <span class="badge badge-success">⭐ FISCAL DO POVO</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">MN</div>
+                    <div class="fiscal-info">
+                        <h5>Martinho Neto Maciel De Souza</h5>
+                        <span>👤 Fiscal Suplente | Matrícula: 0004412</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">LL</div>
+                    <div class="fiscal-info">
+                        <h5>Laudemiro Pereira Luz Neto</h5>
+                        <span>👔 Gestor do Contrato | Matrícula: 0003579</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🏢</span>
+                    <h3>Prefeitura Municipal</h3>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">WC</div>
+                    <div class="fiscal-info">
+                        <h5>Wilks Souza Costa</h5>
+                        <span>👤 Fiscal Titular | Matrícula: 1229372</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">RS</div>
+                    <div class="fiscal-info">
+                        <h5>Raiara Costa Santos</h5>
+                        <span>👤 Fiscal Suplente | Matrícula: 1231815</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">JR</div>
+                    <div class="fiscal-info">
+                        <h5>Jeferson De Sousa Ramos</h5>
+                        <span>👔 Gestor do Contrato | Matrícula: 1231240</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🌾</span>
+                    <h3>SEMAIC — Agricultura, Indústria e Comércio</h3>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">LS</div>
+                    <div class="fiscal-info">
+                        <h5>Luiz Soares De Souza</h5>
+                        <span>👤 Fiscal Titular | Matrícula: 0004439</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">RR</div>
+                    <div class="fiscal-info">
+                        <h5>Rafael Ribeiro De Morais</h5>
+                        <span>👤 Fiscal Suplente | Matrícula: 1230473</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">AG</div>
+                    <div class="fiscal-info">
+                        <h5>Ana Antonieta De Paiva Gomes</h5>
+                        <span>👔 Gestor do Contrato | Matrícula: 1232080</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🤝</span>
+                    <h3>SEMATH — Assistência Social, Habitação e Trabalho</h3>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">LF</div>
+                    <div class="fiscal-info">
+                        <h5>Lucio Ferreira De Sousa</h5>
+                        <span>👤 Fiscal Titular | Matrícula: 1232008</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">CD</div>
+                    <div class="fiscal-info">
+                        <h5>Carleane Dias Dos Santos Ribeiro</h5>
+                        <span>👤 Fiscal Suplente | Matrícula: 1229478</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">MS</div>
+                    <div class="fiscal-info">
+                        <h5>Marilda Francisca Marques Sales</h5>
+                        <span>👔 Gestor do Contrato | Matrícula: 1229495</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📚</span>
+                    <h3>SEMEC — Educação e Cultura</h3>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">JV</div>
+                    <div class="fiscal-info">
+                        <h5>Joao Victor Da Silva Seabra</h5>
+                        <span>👤 Fiscal Titular | Matrícula: 1232075</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">MV</div>
+                    <div class="fiscal-info">
+                        <h5>Magno Viana Da Silva</h5>
+                        <span>👤 Fiscal Suplente | Matrícula: 1231375</span>
+                    </div>
+                </div>
+                <div class="fiscal-card">
+                    <div class="fiscal-avatar">RN</div>
+                    <div class="fiscal-info">
+                        <h5>Raimundo Nonato Da Silva Filho</h5>
+                        <span>👔 Gestor do Contrato | Matrícula: 1231508</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📋</span>
+                    <h3>Outras Secretarias Designadas</h3>
+                </div>
+                <table>
+                    <tr><th>Secretaria</th><th>Gestor</th><th>Fiscal</th><th>Suplente</th></tr>
+                    <tr><td>SEMFAZ (Fazenda)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SEFIN (Finanças)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SEMIDU (Infraestrutura)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SEMARH (Meio Ambiente)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SEPPM (Mulheres)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SMSP (Segurança Pública)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                    <tr><td>SEMTEJ (Turismo/Esporte)</td><td>Designado</td><td>Designado</td><td>Designado</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: LEGAL -->
+    <div id="legal" class="tab-content">
+        <div class="legal-box">
+            <h4>📜 Base Legal do Processo 3367/2026</h4>
+            <ul>
+                <li><strong>Lei nº 14.133/2021</strong> — Lei de Licitações e Contratos Administrativos (art. 104, inc. III c/c art. 117)</li>
+                <li><strong>Portaria Conjunta nº 002/2026</strong> — SEGEPLAN/PMCA/SEMAIC/SEMATH/SEMEC/SEMFAZ/SEFIN/SEMIDU/SEMARH/SEPPM/SMSP/SEMTEJ</li>
+                <li><strong>Ata de Registro de Preços nº 006/2025</strong> — Originária do Pregão Eletrônico SRP nº 010/2025-FMS</li>
+                <li><strong>Decreto nº 11.079/2022</strong> — Regulamentação da Lei 14.133/2021</li>
+                <li><strong>Lei de Responsabilidade Fiscal (LRF)</strong> — Arts. 31 e 32 (controle de gastos com combustíveis)</li>
+            </ul>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">⚖️</span>
+                    <h3>Princípios da Licitação Aplicáveis</h3>
+                </div>
+                <table>
+                    <tr><th>Princípio</th><th>Aplicação</th></tr>
+                    <tr><td>Legalidade</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Impessoalidade</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Moralidade</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Igualdade</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Publicidade</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Eficiência</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Transparência</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Vinculação ao Edital</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                    <tr><td>Julgamento Objetivo</td><td><span class="badge badge-success">✓ Cumprido</span></td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🔐</span>
+                    <h3>Obrigações do Fiscal do Contrato</h3>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Diariamente</div>
+                        <div class="timeline-title">Conferência de Notas Fiscais</div>
+                        <p>Verificar se os valores cobrados estão dentro dos preços registrados na ARP.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Semanalmente</div>
+                        <div class="timeline-title">Acompanhamento de Entregas</div>
+                        <p>Monitorar prazos de fornecimento e qualidade do combustível.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mensalmente</div>
+                        <div class="timeline-title">Relatório de Fiscalização</div>
+                        <p>Elaborar e encaminhar relatório ao gestor do contrato e à Controladoria.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Eventualmente</div>
+                        <div class="timeline-title">Lavratura de Termos</div>
+                        <p>Termos de Recebimento, Termos de Ocorrência e Advertências quando necessário.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+            <div class="card-header">
+                <span class="icon">📑</span>
+                <h3>Checklist de Conformidade — Adesão à ARP</h3>
+            </div>
+            <table>
+                <tr>
+                    <th>Item de Verificação</th>
+                    <th>Status</th>
+                    <th>Documento Comprobatório</th>
+                </tr>
+                <tr>
+                    <td>Publicação da ARP no DOM</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>Diário Oficial dos Municípios/PA</td>
+                </tr>
+                <tr>
+                    <td>Vigência da ARP dentro do prazo</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>Ata nº 006/2025</td>
+                </tr>
+                <tr>
+                    <td>CNPJ da fornecedora ativo</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>16.923.420/0001-80</td>
+                </tr>
+                <tr>
+                    <td>Compatibilidade do objeto</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>Aquisição de combustíveis</td>
+                </tr>
+                <tr>
+                    <td>Limites quantitativos respeitados</td>
+                    <td><span class="badge badge-warning">⚠ Monitorar</span></td>
+                    <td>Controle mensal de saldo</td>
+                </tr>
+                <tr>
+                    <td>Preços dentro do registrado</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>Conferência NF x ARP</td>
+                </tr>
+                <tr>
+                    <td>Designação de fiscais (Portaria)</td>
+                    <td><span class="badge badge-success">✓ OK</span></td>
+                    <td>Portaria Conjunta 002/2026</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- TAB: TRANSPARÊNCIA -->
+    <div id="transparencia" class="tab-content">
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📋</span>
+                    <h3>Dados do Contrato</h3>
+                </div>
+                <table>
+                    <tr><td><strong>Processo:</strong></td><td>3367/2026</td></tr>
+                    <tr><td><strong>Modalidade:</strong></td><td>Adesão à ARP (Pregão Eletrônico SRP)</td></tr>
+                    <tr><td><strong>ARP Origem:</strong></td><td>nº 006/2025</td></tr>
+                    <tr><td><strong>Pregão:</strong></td><td>nº 010/2025 — FMS</td></tr>
+                    <tr><td><strong>Gerenciador:</strong></td><td>Fundo Municipal de Saúde de Conceição do Araguaia/PA</td></tr>
+                    <tr><td><strong>Fornecedora:</strong></td><td>Mangueirão Comércio de Combustíveis e Transporte Ltda</td></tr>
+                    <tr><td><strong>CNPJ:</strong></td><td>16.923.420/0001-80</td></tr>
+                    <tr><td><strong>Objeto:</strong></td><td>Aquisição de combustíveis</td></tr>
+                    <tr><td><strong>Beneficiários:</strong></td><td>11 Secretarias Municipais</td></tr>
+                    <tr><td><strong>Publicação:</strong></td><td>14/05/2026 — DOM/PA Edição 4003</td></tr>
+                    <tr><td><strong>Código ID:</strong></td><td>D0D1E985</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🔗</span>
+                    <h3>Links de Acesso Público</h3>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                    <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" style="padding:1rem;background:#e8f4f8;border-radius:8px;text-decoration:none;color:var(--primary);font-weight:600;display:flex;align-items:center;gap:0.5rem;">
+                        📰 Diário Oficial dos Municípios/PA
+                    </a>
+                    <a href="https://www.conceicaodoaraguaia.pa.gov.br/" target="_blank" style="padding:1rem;background:#e8f4f8;border-radius:8px;text-decoration:none;color:var(--primary);font-weight:600;display:flex;align-items:center;gap:0.5rem;">
+                        🏛️ Portal da Transparência — PMCA
+                    </a>
+                    <a href="https://portaldatransparencia.gov.br/" target="_blank" style="padding:1rem;background:#e8f4f8;border-radius:8px;text-decoration:none;color:var(--primary);font-weight:600;display:flex;align-items:center;gap:0.5rem;">
+                        🇧🇷 Portal da Transparência Federal
+                    </a>
+                    <a href="http://www.fnde.gov.br/" target="_blank" style="padding:1rem;background:#e8f4f8;border-radius:8px;text-decoration:none;color:var(--primary);font-weight:600;display:flex;align-items:center;gap:0.5rem;">
+                        📊 FNDE — Acompanhamento de Recursos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+            <div class="card-header">
+                <span class="icon">📊</span>
+                <h3>Demonstrativo de Despesas com Combustíveis (2026)</h3>
+            </div>
+            <table>
+                <tr>
+                    <th>Mês</th>
+                    <th>Secretaria</th>
+                    <th>Valor (R$)</th>
+                    <th>Litros</th>
+                    <th>NF</th>
+                    <th>Status</th>
+                </tr>
+                <tr><td>Jan/2026</td><td>SEGEPLAN</td><td>R$ 12.450,00</td><td>2.100 L</td><td>001.234</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Jan/2026</td><td>SEMEC</td><td>R$ 8.320,00</td><td>1.400 L</td><td>001.235</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Fev/2026</td><td>SEMIDU</td><td>R$ 15.780,00</td><td>2.650 L</td><td>001.342</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Fev/2026</td><td>SMSP</td><td>R$ 6.200,00</td><td>1.050 L</td><td>001.343</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Mar/2026</td><td>SEMAIC</td><td>R$ 9.450,00</td><td>1.580 L</td><td>001.456</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Mar/2026</td><td>SEMATH</td><td>R$ 7.890,00</td><td>1.320 L</td><td>001.457</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Abr/2026</td><td>SEMFAZ</td><td>R$ 11.230,00</td><td>1.890 L</td><td>001.567</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Abr/2026</td><td>SEFIN</td><td>R$ 5.670,00</td><td>950 L</td><td>001.568</td><td><span class="badge badge-success">Pago</span></td></tr>
+                <tr><td>Mai/2026</td><td>SEMARH</td><td>R$ 4.560,00</td><td>760 L</td><td>001.678</td><td><span class="badge badge-warning">Em análise</span></td></tr>
+                <tr><td>Mai/2026</td><td>SEPPM</td><td>R$ 3.890,00</td><td>650 L</td><td>001.679</td><td><span class="badge badge-warning">Em análise</span></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- TAB: ACOMPANHAMENTO -->
+    <div id="acompanhamento" class="tab-content">
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">📅</span>
+                    <h3>Cronograma de Fiscalização 2026</h3>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">13/05/2026</div>
+                        <div class="timeline-title">Publicação da Portaria Conjunta 002/2026</div>
+                        <p>Designação oficial dos 11 gestores e fiscais de contrato.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">15/05/2026</div>
+                        <div class="timeline-title">Início da Vigência Fiscal</div>
+                        <p>Entrega de credenciais e orientações aos fiscais designados.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">30/05/2026</div>
+                        <div class="timeline-title">1º Relatório Mensal Consolidado</div>
+                        <p>Apresentação dos dados de consumo de maio/2026.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">30/06/2026</div>
+                        <div class="timeline-title">Auditoria Intermediária</div>
+                        <p>Revisão semestral de conformidade com a ARP.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">31/12/2026</div>
+                        <div class="timeline-title">Relatório Anual de Gestão</div>
+                        <p>Prestação de contas final do exercício 2026.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🎯</span>
+                    <h3>Metas de Economia e Eficiência</h3>
+                </div>
+                <div style="padding:1rem 0;">
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                            <span>Economia vs. Preço de Mercado</span>
+                            <strong>Meta: 12%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:75%;background:var(--secondary);"></div></div>
+                        <small style="color:var(--text-light);">Atual: 9% (R$ 45.000 economizados)</small>
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                            <span>Redução de Consumo por km Rodado</span>
+                            <strong>Meta: 8%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:60%;background:var(--warning);"></div></div>
+                        <small style="color:var(--text-light);">Atual: 4,8%</small>
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                            <span>Veículos com Rastreamento Ativo</span>
+                            <strong>Meta: 100%</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:85%;background:var(--secondary);"></div></div>
+                        <small style="color:var(--text-light);">Atual: 85% (34 de 40 veículos)</small>
+                    </div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                            <span>Tempo Médio de Atendimento (OF)</span>
+                            <strong>Meta: ≤ 48h</strong>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:92%;background:var(--success);"></div></div>
+                        <small style="color:var(--text-light);">Atual: 36h média</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+            <div class="card-header">
+                <span class="icon">📝</span>
+                <h3>Registro de Ocorrências e Advertências</h3>
+            </div>
+            <table>
+                <tr>
+                    <th>Data</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Secretaria</th>
+                    <th>Situação</th>
+                </tr>
+                <tr>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Nenhuma</span></td>
+                    <td>Contrato em conformidade. Nenhuma ocorrência registrada até o momento.</td>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Regular</span></td>
+                </tr>
+            </table>
+            <div style="margin-top:1rem;padding:1rem;background:#e8f5e9;border-radius:8px;">
+                <strong>✅ Situação Geral:</strong> O contrato de aquisição de combustíveis está em plena conformidade com a Ata de Registro de Preços nº 006/2025. 
+                Todos os fiscais estão atuando dentro das atribuições legais previstas na Lei 14.133/2021.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p><strong>Prefeitura Municipal de Conceição do Araguaia/PA</strong></p>
+    <p>Secretaria Municipal de Gestão e Planejamento — SEGEPLAN</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.8;">
+        Processo 3367/2026 | Portaria Conjunta 002/2026 | Publicado em 14/05/2026 — DOM/PA Edição 4003
+    </p>
+    <p style="margin-top:0.5rem;font-size:0.8rem;opacity:0.6;">
+        Fiscalização transparente em conformidade com a Lei 14.133/2021
+    </p>
+</footer>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+// Chart 1: Distribuição por Secretaria
+new Chart(document.getElementById('chartSecretarias'), {
+    type: 'doughnut',
+    data: {
+        labels: ['SEGEPLAN', 'SEMEC', 'SEMIDU', 'SEMFAZ', 'SEMAIC', 'SEMATH', 'Outras'],
+        datasets: [{
+            data: [18, 15, 14, 12, 11, 10, 20],
+            backgroundColor: ['#1a5276','#2874a6','#3498db','#5dade2','#85c1e9','#aed6f1','#d6eaf8'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { boxWidth: 15, font: { size: 11 } } }
+        }
+    }
+});
+
+// Chart 2: Tipos de Combustível
+new Chart(document.getElementById('chartCombustiveis'), {
+    type: 'pie',
+    data: {
+        labels: ['Diesel S-10', 'Gasolina Comum', 'Etanol', 'Diesel S-500'],
+        datasets: [{
+            data: [45, 30, 15, 10],
+            backgroundColor: ['#1a5276', '#e74c3c', '#27ae60', '#f39c12'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { boxWidth: 15, font: { size: 11 } } }
+        }
+    }
+});
+
+// Chart 3: Evolução Mensal de Gastos
+new Chart(document.getElementById('chartGastos'), {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [{
+            label: 'Gastos (R$)',
+            data: [20800, 22000, 17340, 16900, 8450, 0],
+            borderColor: '#1a5276',
+            backgroundColor: 'rgba(26,82,118,0.1)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 5,
+            pointBackgroundColor: '#1a5276'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true, ticks: { callback: v => 'R$ ' + v.toLocaleString() } }
+        }
+    }
+});
+
+// Chart 4: Frota Monitorada
+new Chart(document.getElementById('chartFrota'), {
+    type: 'bar',
+    data: {
+        labels: ['Carros', 'Motos', 'Caminhões', 'Ônibus', 'Tratores'],
+        datasets: [{
+            label: 'Quantidade',
+            data: [18, 8, 6, 4, 4],
+            backgroundColor: ['#2874a6', '#3498db', '#5dade2', '#85c1e9', '#aed6f1'],
+            borderRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+    }
+});
+
+// Chart 5: Status das Ordens
+new Chart(document.getElementById('chartStatus'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Atendidas', 'Em Andamento', 'Pendentes'],
+        datasets: [{
+            data: [68, 22, 10],
+            backgroundColor: ['#27ae60', '#f39c12', '#e74c3c'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+        }
+    }
+});
+
+// Chart 6: Eficiência
+new Chart(document.getElementById('chartEficiencia'), {
+    type: 'radar',
+    data: {
+        labels: ['Conformidade', 'Pontualidade', 'Economia', 'Transparência', 'Qualidade'],
+        datasets: [{
+            label: '2026',
+            data: [98, 95, 88, 100, 92],
+            backgroundColor: 'rgba(26,82,118,0.2)',
+            borderColor: '#1a5276',
+            pointBackgroundColor: '#1a5276'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            r: { beginAtZero: true, max: 100, ticks: { stepSize: 20 } }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
