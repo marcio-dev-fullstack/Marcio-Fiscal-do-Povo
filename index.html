@@ -4,57 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Márcio O Fiscal do Povo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #001f3f; --accent: #d4af37; --bg: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #334155; line-height: 1.7; }
-
-        /* Hero com gradiente vivo */
-        .hero-section { 
-            background: linear-gradient(135deg, var(--primary) 0%, #003366 100%); 
-            color: white; padding: 80px 20px; text-align: center; border-bottom: 5px solid var(--accent);
-        }
-        .hero-title { font-size: 3rem; margin-bottom: 10px; letter-spacing: -1px; }
-        .hero-image { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--accent); margin-top: 20px; transition: 0.4s; }
-        .hero-image:hover { transform: scale(1.05); }
-
-        /* Grid mais fluido */
-        .propostas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 40px 20px; max-width: 1200px; margin: auto; }
-        .proposta-card-tech { 
-            background: white; padding: 30px; border-radius: 24px; border-top: 5px solid var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .proposta-card-tech:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
-        .proposta-card-tech h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .proposta-card-tech ul li { margin-bottom: 10px; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
-
-        .section-title { text-align: center; font-size: 2.2rem; margin-top: 50px; color: var(--primary); }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f4f7f6; color: #333; }
+        .main-nav { background-color: #001f3f; padding: 15px; border-bottom: 3px solid #d4af37; text-align: center; }
+        .logo-img { max-height: 50px; }
+        .hero-section { background-color: #002b5c; color: white; text-align: center; padding: 40px 20px; }
+        .section-title-premium { color: #001f3f; text-align: center; margin-bottom: 30px; font-weight: 800; }
+        .propostas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: auto; }
+        .proposta-card-tech { background: white; padding: 20px; border-radius: 15px; border-left: 6px solid #d4af37; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .proposta-card-tech h3 { font-size: 1rem; color: #003366; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .proposta-card-tech ul { list-style: none; font-size: 0.85rem; }
+        .main-footer { background: #001a33; padding: 30px; text-align: center; color: white; margin-top: 40px; }
     </style>
 </head>
 <body>
 
+    <nav class="main-nav"><img src="img/10.jpg" alt="Logo" class="logo-img"></nav>
+
     <header class="hero-section">
-        <h1 class="hero-title">Márcio O Fiscal do Povo</h1>
-        <p>Engenharia, Ética e Inovação para Conceição do Araguaia.</p>
-        <img src="img/01.jpg" alt="Márcio" class="hero-image">
+        <h1>Márcio O Fiscal do Povo</h1>
+        <p>Técnica e Transparência para os nossos 40 mil cidadãos.</p>
     </header>
 
-    <h2 class="section-title">As 100 Metas para uma Nova CDA</h2>
-
-    <section class="propostas-grid">
-        <!-- Exemplo de 1 card, repita para os 10 -->
-        <div class="proposta-card-tech">
-            <h3><i class="fas fa-heartbeat"></i> SAÚDE</h3>
-            <ul>
-                <li>01. Agenda Zap</li><li>02. Mutirão Cirurgias</li><li>03. Farmácia 24h</li>
-                <li>04. Saúde Rural</li><li>05. Clínica Mulher</li><li>06. UTI Móvel</li>
-                <li>07. Valoriza ACS</li><li>08. Amplia CEO</li><li>09. Saúde Mental</li><li>10. Lab. Municipal</li>
-            </ul>
+    <section style="padding: 40px 20px;">
+        <h2 class="section-title-premium">As 100 Metas para uma Nova CDA</h2>
+        <div class="propostas-grid">
+            <!-- Cada bloco abaixo representa uma das 10 áreas -->
+            <div class="proposta-card-tech"><h3><i class="fas fa-heartbeat"></i> SAÚDE</h3><ul><li>01. Agenda Zap</li><li>02. Mutirão Cirurgias</li><li>03. Farmácia 24h</li><li>04. Saúde Rural</li><li>05. Clínica Mulher</li><li>06. UTI Móvel</li><li>07. Valoriza ACS</li><li>08. Amplia CEO</li><li>09. Saúde Mental</li><li>10. Lab. Municipal</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-book"></i> EDUCAÇÃO</h3><ul><li>11. Escolas Tempo Integral</li><li>12. Climatização</li><li>13. Auxílio Univ.</li><li>14. Escola Técnica</li><li>15. Creches</li><li>16. Valoriza prof.</li><li>17. Reforço</li><li>18. Inclusão</li><li>19. Conexão Digital</li><li>20. Esporte Escolar</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-road"></i> INFRA</h3><ul><li>21. Asfalto de Qualidade</li><li>22. Iluminação LED</li><li>23. Drenagem</li><li>24. Pontes Vicinais</li><li>25. Ciclovias</li><li>26. Praças</li><li>27. Arborização</li><li>28. Sinalização</li><li>29. Manutenção</li><li>30. Acessibilidade</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-tractor"></i> AGRO/COMÉRCIO</h3><ul><li>31. Mecanização</li><li>32. Estradas Rurais</li><li>33. Feira Produtor</li><li>34. Assistência</li><li>35. Piscicultura</li><li>36. Leite Forte</li><li>37. Sala Empreendedor</li><li>38. Apoio MEI</li><li>39. Escoamento</li><li>40. Cooperativismo</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-microchip"></i> TI & IA</h3><ul><li>41. Prefeitura Digital</li><li>42. Portal Transparência</li><li>43. Processos Online</li><li>44. Ouvidoria IA</li><li>45. Wi-fi Praças</li><li>46. Conexão Rural</li><li>47. Monitoramento IA</li><li>48. Capacita Tech</li><li>49. Dados Abertos</li><li>50. Segurança Digital</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-trash"></i> SANEAMENTO</h3><ul><li>51. Coleta Seletiva</li><li>52. Aterro Sanitário</li><li>53. Recupera Nascentes</li><li>54. Limpeza Urbana</li><li>55. Ed. Ambiental</li><li>56. Controle Pragas</li><li>57. Biodigestores</li><li>58. Proteção Araguaia</li><li>59. Energia Solar</li><li>60. Licenciamento</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-shield-alt"></i> SEGURANÇA</h3><ul><li>61. Guardas Ativas</li><li>62. Monitoramento</li><li>63. Iluminação Extra</li><li>64. Blitz Educativa</li><li>65. Conselho Seg.</li><li>66. Apoio Policial</li><li>67. Proteção Patrimônio</li><li>68. Prevenção Drogas</li><li>69. Defesa Civil</li><li>70. Contingência</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-hands-helping"></i> SOCIAL</h3><ul><li>71. Restaurante Pop.</li><li>72. Fome Zero</li><li>73. Casa Idoso</li><li>74. Proteção Criança</li><li>75. Apoio PCD</li><li>76. Qualificação</li><li>77. Habitação</li><li>78. Regularização</li><li>79. Juventude</li><li>80. Centro Social</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-futbol"></i> ESPORTE/CULTURA</h3><ul><li>81. Estádio</li><li>82. Esportes Amadores</li><li>83. Projetos Culturais</li><li>84. Calendário</li><li>85. Esc. Música</li><li>86. Artesanato</li><li>87. Artistas Locais</li><li>88. Eventos Relig.</li><li>89. Ginásio</li><li>90. Turismo Pesca</li></ul></div>
+            <div class="proposta-card-tech"><h3><i class="fas fa-gavel"></i> GESTÃO</h3><ul><li>91. Consulta Popular</li><li>92. Concurso Público</li><li>93. Valoriza Servidor</li><li>94. Licitação Online</li><li>95. Controle Gastos</li><li>96. Plano Cargos</li><li>97. Cidade Inteligente</li><li>98. Auditoria</li><li>99. Eficiência</li><li>100. Metas Cumpridas</li></ul></div>
         </div>
-        <!-- ... (Adicione os outros 9 aqui seguindo este modelo) -->
     </section>
+
+    <footer class="main-footer">
+        <p>© 2026 Conceição do Araguaia - PA</p>
+        <p style="font-size: 10px; color: #888; margin-top: 10px;">Assinatura: RAZGO</p>
+    </footer>
 
 </body>
 </html>
