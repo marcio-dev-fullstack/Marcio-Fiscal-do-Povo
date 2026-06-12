@@ -8,76 +8,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; overflow-x: hidden; }
 
-        /* --- MENU SUPERIOR (CORRIGIDO) --- */
         .main-nav { background-color: #001f3f; width: 100%; border-bottom: 3px solid #d4af37; position: sticky; top: 0; z-index: 2000; height: 75px; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 100%; }
-        .logo-img { max-height: 55px; width: auto; display: block; }
+        .logo-img { max-height: 55px; width: auto; }
         
-        .menu-toggle { display: none; color: #fff; font-size: 28px; cursor: pointer; }
-        .nav-menu { list-style: none; display: flex; gap: 20px; }
-        .nav-menu li a { color: #fff; text-decoration: none; font-weight: 700; font-size: 13px; transition: 0.3s; }
-        .nav-menu li a:hover { color: #ffcc00; }
-
-        /* --- HERO E FOTO (REDUZIDA) --- */
         .hero-section { background-color: #002b5c; color: white; text-align: center; padding: 50px 20px; }
         .hero-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
         .hero-subtitle { font-weight: 800; color: #d4af37; text-transform: uppercase; font-size: 1rem; }
         .hero-image { max-width: 280px; width: 100%; border-radius: 15px; border: 4px solid #fff; margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        /* --- BIOGRAFIA --- */
         .biografia-section { padding: 60px 20px; background: #fff; }
         .container-biografia { max-width: 900px; margin: 0 auto; }
         .bio-card { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 10px solid #001f3f; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .section-title-premium { font-size: 1.8rem; color: #001f3f; margin-bottom: 25px; text-align: center; font-weight: 800; }
 
-        /* --- METAS GRID --- */
         .propostas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
         .proposta-card-tech { background: white; padding: 20px; border-radius: 15px; border-left: 8px solid #d4af37; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .proposta-card-tech h3 { color: #003366; margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
-        .proposta-card-tech ul { list-style: none; font-size: 0.85rem; }
-        .proposta-card-tech ul li { margin-bottom: 8px; padding-left: 20px; position: relative; }
-        .proposta-card-tech ul li::before { content: "✓"; position: absolute; left: 0; color: #25d366; font-weight: bold; }
+        .proposta-card-tech ul { list-style: none; font-size: 0.80rem; }
+        .proposta-card-tech ul li { margin-bottom: 5px; }
 
-        /* --- RODAPÉ (RESTAURADO E AJUSTADO) --- */
-        .main-footer { background: #001a33; padding: 60px 20px; border-top: 5px solid #d4af37; text-align: center; width: 100%; color: white; }
-        .footer-sociais { display: flex; gap: 25px; justify-content: center; margin-top: 25px; }
-        .footer-sociais a { color: white; font-size: 2.2rem; transition: 0.3s; }
-        .footer-sociais a:hover { color: #ffcc00; }
-
-        /* --- RESPONSIVIDADE APP --- */
-        @media (max-width: 768px) {
-            body { padding-bottom: 80px; }
-            .menu-toggle { display: block; }
-            .nav-menu { display: none; flex-direction: column; position: fixed; top: 75px; left: 0; width: 100%; background: #001f3f; padding: 20px 0; border-bottom: 3px solid #d4af37; }
-            .nav-menu.active { display: flex !important; }
-            .nav-menu li { text-align: center; margin: 15px 0; }
-            .nav-menu li a { font-size: 18px; }
-            .mobile-tab-bar { display: flex; position: fixed; bottom: 0; left: 0; width: 100%; background: #001f3f; border-top: 2px solid #d4af37; justify-content: space-around; padding: 10px 0; z-index: 2000; }
-            .tab-item { color: white; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 10px; }
-            .tab-item i { font-size: 22px; }
-        }
-        
-        .mobile-tab-bar { display: none; }
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 90px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 1500; text-decoration: none; }
+        .main-footer { background: #001a33; padding: 40px 20px; border-top: 5px solid #d4af37; text-align: center; color: white; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1500; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav class="main-nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html"><img src="img/10.jpg" alt="Logo" class="logo-img"></a>
-            </div>
-           
+            <a href="index.html"><img src="img/10.jpg" alt="Logo" class="logo-img"></a>
+        </div>
     </nav>
 
     <header class="hero-section" id="inicio">
         <h1 class="hero-title">Márcio O Fiscal do Povo</h1>
-        <p class="hero-subtitle">Compromisso com a geração de empregos e fiscalização.</p>
+        <p class="hero-subtitle">Meu Compromisso é com a População de Conceição do Araguaia</p>
         <img src="img/01.jpg" alt="Márcio" class="hero-image">
     </header>
 
@@ -85,59 +53,57 @@
         <div class="container-biografia">
             <div class="bio-card">
                 <h2 class="section-title-premium">Quem é Márcio</h2>
-                <p><strong>MÁRCIO RODRIGUES DE OLIVEIRA</strong>, nascido (21/10/1978) em Conceição do Araguaia. Filho de Josué (Jesu) Machado de Oliveira e Maria Helena Rodrigues de Oliveira. Casado com Késia de Oliveira Quadros e pai da Maria Eduarda.</p><br>
-                <p><strong>FORMAÇÃO:</strong> Engenharia de Software, Matemática, Engenharia Civil e Engenharia de Segurança do Trabalho. Servidor Público Municipal (Analista) desde 2012.</p>
-                <p style="margin-top:20px; font-style: italic; color: #666;">"Acredito que ética e transparência devem orientar cada decisão."</p>
+                <p><strong>MÁRCIO RODRIGUES DE OLIVEIRA:</strong> Servidor Público Municipal (desde 2012), Professor, 
+                    Engenheiro de Software, Engenheiro Civil, 
+                    Engenheiro de Segurança do Trabalho e Engenheiro de Trânsito, Transporte e Logística</p><br>
+                <p>"Ética, técnica e tecnologia para uma gestão de resultados."</p>
+                
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd;">
+                    <p style="margin-bottom: 10px;"><strong>Nossos projetos sociais:</strong></p>
+                    <ul style="list-style: none; font-size: 0.9rem;">
+                        <li style="margin-bottom: 5px;"><a href="https://cdalista.com.br" target="_blank" style="color: #003366;
+                        text-decoration: none;"><i class="fas fa-link" style="margin-right: 8px;"></i>cdalista.com.br</a></li>
+                        <li style="margin-bottom: 5px;"><a href="https://radardacorrupcao.online/" target="_blank" style="color: #003366; 
+                        text-decoration: none;"><i class="fas fa-link" style="margin-right: 8px;"></i>radardacorrupcao.online</a></li>
+                        <li style="margin-bottom: 5px;"><a href="https://mgrupo.online/araguaSIA/araguasia.html" target="_blank" 
+                        style="color: #003366; text-decoration: none;"><i class="fas fa-link" style="margin-right: 8px;"></i>mgrupo.online/araguaSIA/araguasia.html</a></li>
+                        
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="propostas-section" id="propostas" style="padding: 60px 20px;">
+    <!-- ... (restante do conteúdo das 100 Metas mantido como antes) ... -->
+    <section class="propostas-section" id="propostas" style="padding: 60px 20px; background: #f4f7f6;">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title-premium">Metas: Uma Nova CDA</h2>
+            
+            <h2 class="section-title-premium">100 Metas de um canditato à prefeito em CDA em 2028</h2>
+            <h2 class="section-title-premium">A 1ª META É SER FICHA LIMPA</h2>
+                       
+            
             <div class="propostas-grid">
-                <div class="proposta-card-tech">
-                    <h3><i class="fas fa-heartbeat"></i> SAÚDE</h3>
-                    <ul><li>01. Agendamento via WhatsApp</li><li>02. Mutirão de cirurgias</li><li>03. Farmácia 24h</li></ul>
-                </div>
-                <div class="proposta-card-tech">
-                    <h3><i class="fas fa-book-reader"></i> EDUCAÇÃO</h3>
-                    <ul><li>10. Escolas em Tempo Integral</li><li>11. Climatização total</li><li>12. Auxílio universitário</li></ul>
-                </div>
-                <div class="proposta-card-tech">
-                    <h3><i class="fas fa-briefcase"></i> EMPREGO</h3>
-                    <ul><li>19. Polo Industrial</li><li>20. Primeiro Emprego</li><li>21. Banco do Povo</li></ul>
-                </div>
-                <div class="proposta-card-tech">
-                    <h3><i class="fas fa-road"></i> INFRAESTRUTURA</h3>
-                    <ul><li>28. Pavimentação 100%</li><li>29. Iluminação LED</li><li>30. Saneamento Básico</li></ul>
-                </div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-heartbeat"></i> SAÚDE</h3><ul><li>01. Agenda Zap</li><li>02. Mutirão Cirurgias</li><li>03. Farmácia 24h</li><li>04. Saúde Rural</li><li>05. Clínica Mulher</li><li>06. UTI Móvel</li><li>07. Valoriza ACS</li><li>08. Amplia CEO</li><li>09. Saúde Mental</li><li>10. Lab. Municipal</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-book-reader"></i> EDUCAÇÃO</h3><ul><li>11. Tempo Integral</li><li>12. Climatização</li><li>13. Auxílio Univ.</li><li>14. Escola Técnica</li><li>15. Creches</li><li>16. Valoriza Magistério</li><li>17. Reforço</li><li>18. Inclusão</li><li>19. Fibra Ótica</li><li>20. Esporte</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-code"></i> TI & IA</h3><ul><li>21. Portal Transparência</li><li>22. App Prefeitura</li><li>23. Wi-fi Praças</li><li>24. IA no Atendimento</li><li>25. E-governo (Paperless)</li><li>26. Monitoramento IA</li><li>27. Conexão Rural</li><li>28. Dados Abertos</li><li>29. Capacita Tech</li><li>30. Segurança Digital</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-road"></i> INFRA</h3><ul><li>31. Asfalto</li><li>32. LED 100%</li><li>33. Saneamento</li><li>34. Drenagem</li><li>35. Pontes</li><li>36. Vicinais</li><li>37. Ciclovias</li><li>38. Praças</li><li>39. Arborização</li><li>40. Sinalização</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-briefcase"></i> EMPREGO</h3><ul><li>41. Polo Industrial</li><li>42. Primeiro Emprego</li><li>43. Banco do Povo</li><li>44. Incentivo MEI</li><li>45. Feiras</li><li>46. Sala Empreendedor</li><li>47. Apoio Rural</li><li>48. Capacitação</li><li>49. Turismo</li><li>50. Parcerias</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-hands-helping"></i> SOCIAL</h3><ul><li>51. Restaurante Pop.</li><li>52. Fome Zero</li><li>53. Casa Idoso</li><li>54. Proteção Menor</li><li>55. Apoio PCD</li><li>56. Qualificação</li><li>57. Habitação</li><li>58. Regularização</li><li>59. Juventude</li><li>60. Comunitário</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-shield-alt"></i> SEGURANÇA</h3><ul><li>61. Monitoramento</li><li>62. Guarda Ativa</li><li>63. Iluminação</li><li>64. Blitz</li><li>65. Conselho</li><li>66. Apoio Policial</li><li>67. Proteção</li><li>68. Prevenção</li><li>69. Defesa Civil</li><li>70. Contingência</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-tractor"></i> AGRO</h3><ul><li>71. Mecanização</li><li>72. Estradas</li><li>73. Feira Produtor</li><li>74. Assistência</li><li>75. Piscicultura</li><li>76. Leite Forte</li><li>77. Sementes</li><li>78. Energia</li><li>79. Escoamento</li><li>80. Cooperativas</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-leaf"></i> AMBIENTE</h3><ul><li>81. Coleta</li><li>82. Aterro</li><li>83. Nascentes</li><li>84. Parque Urbano</li><li>85. Ed. Ambiental</li><li>86. Queimadas</li><li>87. Biodigestores</li><li>88. Rio Araguaia</li><li>89. Energia Solar</li><li>90. Licenciamento</li></ul></div>
+                <div class="proposta-card-tech"><h3><i class="fas fa-futbol"></i> CULTURA</h3><ul><li>91. Estádio</li><li>92. Esportes</li><li>93. Projetos Cult.</li><li>94. Calendário Eventos</li><li>95. Esc. Música</li><li>96. Artesanato</li><li>97. Artistas</li><li>98. Eventos Relig.</li><li>99. Ginásio</li><li>100. Turismo Pesca</li></ul></div>
             </div>
         </div>
     </section>
 
     <footer class="main-footer">
-        <h2 style="color: #d4af37; margin-bottom: 10px;">MÁRCIO O FISCAL DO POVO</h2>
-        <p>© 2026 Todos os direitos reservados. Conceição do Araguaia - PA</p>
-        <div class="footer-sociais">
-            <a href="https://wa.me/5594992500073" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://facebook.com/MarcioFiscalDoPovo" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com/marcioofiscaldopovo/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com/@MarcioFiscalDoPovo" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
+        
+        <p>© 2026 Conceição do Araguaia - PA</p>
+        <p style="font-size: 10px; color: #888; margin-top: 10px;">Assinatura do desenvolvedor: RAZGO</p>
     </footer>
 
-     <a href="https://wa.me/5594992500073" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/5594992500073" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <script>
-        const menuBtn = document.getElementById('mobile-menu');
-        const navMenu = document.querySelector('.nav-menu');
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-    </script>
 </body>
 </html>
